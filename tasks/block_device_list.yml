@@ -24,6 +24,7 @@
 
 - name: "block_device_list: Run command {{ ll_block_device_list_command }}"
   command: "{{ ll_block_device_list_command }}"
+  changed_when: false # E301: Commands should not change things if nothing needs doing
   register: ll_results
 
 - name: "block_device_list: Create list of block devices"
