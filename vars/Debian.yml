@@ -1,0 +1,8 @@
+---
+# Debian vars linux_lib
+
+ll_block_device_list_command: "lsblk -lno NAME"
+ll_service_list_command: "service --status-all"
+
+# EOF
+...

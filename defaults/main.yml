@@ -1,0 +1,14 @@
+---
+# linux_lib defaults
+
+# Best practice is to include vars_from ansible_os_family
+# - include_role:
+#     name: vbotka.linux_lib
+#     tasks_from: <File to load from a role's tasks/ directory>
+#     vars_from: "{{ ansible_os_family }}"
+
+ll_debug: false
+ll_backup_conf: false
+
+# EOF
+...
