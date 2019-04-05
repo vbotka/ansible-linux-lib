@@ -3,9 +3,7 @@ linux_lib
 
 [![Build Status](https://travis-ci.org/vbotka/ansible-linux-lib.svg?branch=master)](https://travis-ci.org/vbotka/ansible-linux-lib)
 
-[Ansible role.](https://galaxy.ansible.com/vbotka/linux_lib/)
-
-Ansible Linux library of tasks.
+[Ansible role.](https://galaxy.ansible.com/vbotka/linux_lib/) Ansible Linux library of tasks.
 
 
 Description
@@ -44,10 +42,7 @@ Workflow
 # editor vbotka.linux_lib/vars/main.yml
 ```
 
-Review OS specific variables in *vars/*. Optionally put customized OS
-specific variables into the *vars* directory. See *tasks/vars.yml* to
-learn the naming conventions and precedence. Os specific variables
-will overwrite variables in *var/main.yml*.
+Review OS specific variables in *vars/*. Optionally put customized variables into the *vars* directory and fit the parameter *vars_from* of the module *include_role*.
 
 3) Create the inventory.
 
