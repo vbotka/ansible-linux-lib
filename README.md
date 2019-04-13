@@ -1,13 +1,11 @@
-linux_lib
-=========
+# linux_lib
 
 [![Build Status](https://travis-ci.org/vbotka/ansible-linux-lib.svg?branch=master)](https://travis-ci.org/vbotka/ansible-linux-lib)
 
 [Ansible role.](https://galaxy.ansible.com/vbotka/linux_lib/) Ansible Linux library of tasks.
 
 
-Description
------------
+## Description
 
 Do not run this role. It's a collection of independent tasks. The
 purpose of this role is to provide a library of reusable tasks to be
@@ -15,20 +13,18 @@ included in playbooks and other roles.
 
 Tested with Ubuntu 18.04. Some tasks tested with CentOS 7.
 
-Requirements
-------------
+## Requirements
 
 None.
 
 
-Variables
----------
+## Variables
+
 
 Read defaults, vars and source of the tasks.
 
 
-Workflow
---------
+## Workflow
 
 1) Install the role.
 
@@ -79,13 +75,11 @@ Best practice is to include *vars_from: "{{ ansible_os_family }}"*
 # ansible-playbook test-linux-lib.yml
 ```
 
-License
--------
+## License
 
 [![license](https://img.shields.io/badge/license-BSD-red.svg)](https://www.freebsd.org/doc/en/articles/bsdl-gpl/article.html)
 
 
-Author Information
-------------------
+## Author Information
 
 [Vladimir Botka](https://botka.link)
