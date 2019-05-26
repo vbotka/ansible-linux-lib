@@ -26,7 +26,7 @@
   command: "{{ ll_service_list_command }}"
   args:
     warn: false
-  changed_when: false # E301: Commands should not change things if nothing needs doing
+  changed_when: false  # E301: Commands should not change things if nothing needs doing
   register: ll_results
 
 - name: "service_list: Create ll_services"
