@@ -29,13 +29,13 @@ Read defaults, vars and source of the tasks.
 1) Install the role.
 
 ```
-# ansible-galaxy install vbotka.linux_lib
+shell> ansible-galaxy install vbotka.linux_lib
 ```
 
 2) Change variables.
 
 ```
-# editor vbotka.linux_lib/vars/main.yml
+shell> editor vbotka.linux_lib/vars/main.yml
 ```
 
 Review OS specific variables in *vars/*. Optionally put customized variables into the *vars* directory and fit the parameter *vars_from* of the module *include_role*.
@@ -43,7 +43,7 @@ Review OS specific variables in *vars/*. Optionally put customized variables int
 3) Create the inventory.
 
 ```
-# cat hosts
+shell> cat hosts
 [host1]
 host1.example.com
 [host1:vars]
@@ -58,7 +58,7 @@ ansible_perl_interpreter=/usr/bin/perl
 Best practice is to include *vars_from: "{{ ansible_os_family }}"*
 
 ```
-# cat test-linux-lib.yml
+shell> cat test-linux-lib.yml
 - hosts: host1
   vars_files:
     - <Play specific varaibles>
@@ -72,7 +72,7 @@ Best practice is to include *vars_from: "{{ ansible_os_family }}"*
 5) Run the playbook.
 
 ```
-# ansible-playbook test-linux-lib.yml
+shell> ansible-playbook test-linux-lib.yml
 ```
 
 ## License
