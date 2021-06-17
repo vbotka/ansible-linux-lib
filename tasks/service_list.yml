@@ -9,7 +9,7 @@
 
 - name: "service_list: Debug"
   vars:
-    msg: |
+    msg: |-
       ansible_architecture [ {{ ansible_architecture }} ]
       ansible_os_family [ {{ ansible_os_family }} ]
       ansible_distribution [ {{ ansible_distribution }} ]
@@ -18,25 +18,26 @@
       ansible_distribution_release [ {{ ansible_distribution_release }} ]
 
       ll_service_list_command [ {{ ll_service_list_command }} ]
-  debug:
+  ansible.builtin.debug:
     msg: "{{ msg.split('\n') }}"
   when: ll_debug|bool
 
 - name: "service_list: Run command {{ ll_service_list_command }}"
-  command: "{{ ll_service_list_command }}"
+  ansible.builtin.command:
+    cmd: "{{ ll_service_list_command }}"
   args:
     warn: false
   changed_when: false  # E301: Commands should not change things if nothing needs doing
   register: ll_results
 
 - name: "service_list: Create ll_services"
-  set_fact:
+  ansible.builtin.set_fact:
     ll_services: "{{ ll_services|default([]) +
                      [ {item.split().3 : item.split().1} ] }}"
   loop: "{{ ll_results.stdout_lines|default([]) }}"
 
 - name: "service_list: Debug ll_services"
-  debug:
+  ansible.builtin.debug:
     var: ll_services
   when: ll_debug|bool
 

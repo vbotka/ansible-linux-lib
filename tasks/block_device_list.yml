@@ -18,22 +18,23 @@
       ansible_distribution_release [ {{ ansible_distribution_release }} ]
 
       ll_block_device_list_command [ {{ ll_block_device_list_command }} ]
-  debug:
+  ansible.builtin.debug:
     msg: "{{ msg.split('\n') }}"
   when: ll_debug|bool
 
 - name: "block_device_list: Run command {{ ll_block_device_list_command }}"
-  command: "{{ ll_block_device_list_command }}"
-  changed_when: false  # E301: Commands should not change things if nothing needs doing
+  ansible.builtin.command:
+    cmd: "{{ ll_block_device_list_command }}"
+  changed_when: false
   register: ll_results
 
 - name: "block_device_list: Create list of block devices"
-  set_fact:
+  ansible.builtin.set_fact:
     ll_block_devices: "{{ ll_block_devices|default([]) + [ item ] }}"
   loop: "{{ ll_results.stdout_lines|default([]) }}"
 
 - name: "block_device_list: Debug ll_block_devices"
-  debug:
+  ansible.builtin.debug:
     var: ll_block_devices
   when: ll_debug|bool
 
