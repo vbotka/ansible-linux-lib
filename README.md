@@ -18,24 +18,30 @@ Tested with Ubuntu 18.04 and 20.04. Some tasks tested with CentOS 7.
 
 ## Requirements
 
+### Collections
+
+None.
+
+### Roles
+
 None.
 
 
 ## Variables
 
 
-Read defaults, vars and source of the tasks.
+See defaults, vars and source of the tasks.
 
 
 ## Workflow
 
-1) Install the role.
+1) Install the role
 
 ```
-shell> ansible-galaxy install vbotka.linux_lib
+shell> ansible-galaxy role install vbotka.linux_lib
 ```
 
-2) Change variables.
+2) Change variables
 
 ```
 shell> editor vbotka.linux_lib/vars/main.yml
@@ -43,7 +49,7 @@ shell> editor vbotka.linux_lib/vars/main.yml
 
 Review OS specific variables in *vars/*. Optionally put customized variables into the *vars* directory and fit the parameter *vars_from* of the module *include_role*.
 
-3) Create the inventory.
+3) Create the inventory
 
 ```
 shell> cat hosts
@@ -56,7 +62,7 @@ ansible_python_interpreter=/usr/bin/python3.6
 ansible_perl_interpreter=/usr/bin/perl
 ```
 
-4) Include role's tasks in a playbook, or in any other role.
+4) Include role's tasks in a playbook, or in any other role
 
 Best practice is to include *vars_from: "{{ ansible_os_family }}"*
 
@@ -64,7 +70,7 @@ Best practice is to include *vars_from: "{{ ansible_os_family }}"*
 shell> cat test-linux-lib.yml
 - hosts: host1
   vars_files:
-    - <Play specific varaibles>
+    - <Play specific variables>
   tasks:
     - include_role:
         name: vbotka.linux_lib
@@ -72,7 +78,7 @@ shell> cat test-linux-lib.yml
 	vars_from: "{{ ansible_os_family }}"
 ```
 
-5) Run the playbook.
+5) Run the playbook
 
 ```
 shell> ansible-playbook test-linux-lib.yml

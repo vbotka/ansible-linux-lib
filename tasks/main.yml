@@ -1,9 +1,17 @@
 ---
 # tasks linux_lib
 
-- import_tasks: debug.yml
-- import_tasks: block_device_list.yml
-- import_tasks: service_list.yml
+- name: FOR TESTING ONLY. DO NOT RUN IT.
+  meta: end_play
+
+- name: Import debug.yml
+  ansible.builtin.import_tasks: debug.yml
+
+- name: Import block_device_list.yml
+  ansible.builtin.import_tasks: block_device_list.yml
+
+- name: Import service_list.yml
+  ansible.builtin.import_tasks: service_list.yml
 
 # EOF
 ...
