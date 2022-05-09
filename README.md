@@ -1,6 +1,6 @@
 # linux_lib
 
-[![quality](https://img.shields.io/ansible/quality/27910)](https://galaxy.ansible.com/vbotka/linux_lib)[![Build Status](https://travis-ci.org/vbotka/ansible-linux-lib.svg?branch=master)](https://travis-ci.org/vbotka/ansible-linux-lib)
+[![quality](https://img.shields.io/ansible/quality/27910)](https://galaxy.ansible.com/vbotka/linux_lib)[![Build Status](https://app.travis-ci.com/vbotka/ansible-linux-lib.svg?branch=master)](https://app.travis-ci.com/vbotka/ansible-linux-lib)
 
 [Ansible role.](https://galaxy.ansible.com/vbotka/linux_lib/) Ansible Linux library of tasks.
 
@@ -91,4 +91,4 @@ shell> ansible-playbook test-linux-lib.yml
 
 ## Author Information
 
-[Vladimir Botka](https://botka.link)
+[Vladimir Botka](https://botka.info)
