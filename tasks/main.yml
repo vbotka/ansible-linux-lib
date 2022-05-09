@@ -2,7 +2,7 @@
 # tasks linux_lib
 
 - name: FOR TESTING ONLY. DO NOT RUN IT.
-  meta: end_play
+  ansible.builtin.meta: end_play
 
 - name: Import debug.yml
   ansible.builtin.import_tasks: debug.yml
