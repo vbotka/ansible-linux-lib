@@ -4,7 +4,7 @@
 # Create list of {services:status} hashes
 # Input: none
 # Output: ll_services
-# Format: [ {service:status}, ]
+# Format: [{service:status}, ]
 # SEE ALSO: man service(8)
 
 - name: "service_list: Debug"
@@ -33,7 +33,7 @@
 - name: "service_list: Create ll_services"
   ansible.builtin.set_fact:
     ll_services: "{{ ll_services|default([]) +
-                     [ {item.split().3 : item.split().1} ] }}"
+                     [{item.split().3: item.split().1}] }}"
   loop: "{{ ll_results.stdout_lines|default([]) }}"
 
 - name: "service_list: Debug ll_services"
