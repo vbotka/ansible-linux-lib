@@ -4,22 +4,22 @@
 # Create list of block devices
 # Input: none
 # Output: ll_block_devices
-# Format: [ device, ]
+# Format: [device, ]
 # SEE ALSO: man lsblk(8)
 
 - name: "block_device_list: Debug"
   vars:
     msg: |
-      ansible_architecture [ {{ ansible_architecture }} ]
-      ansible_os_family [ {{ ansible_os_family }} ]
-      ansible_distribution [ {{ ansible_distribution }} ]
-      ansible_distribution_major_version [ {{ ansible_distribution_major_version }} ]
-      ansible_distribution_version [ {{ ansible_distribution_version }} ]
-      ansible_distribution_release [ {{ ansible_distribution_release }} ]
+      ansible_architecture: {{ ansible_architecture }}
+      ansible_os_family: {{ ansible_os_family }}
+      ansible_distribution: {{ ansible_distribution }}
+      ansible_distribution_major_version: {{ ansible_distribution_major_version }}
+      ansible_distribution_version: {{ ansible_distribution_version }}
+      ansible_distribution_release: {{ ansible_distribution_release }}
 
-      ll_block_device_list_command [ {{ ll_block_device_list_command }} ]
+      ll_block_device_list_command: {{ ll_block_device_list_command }}
   ansible.builtin.debug:
-    msg: "{{ msg.split('\n') }}"
+    msg: "{{ '{}'.format(msg) }}"
   when: ll_debug|bool
 
 - name: "block_device_list: Run command {{ ll_block_device_list_command }}"
@@ -30,7 +30,7 @@
 
 - name: "block_device_list: Create list of block devices"
   ansible.builtin.set_fact:
-    ll_block_devices: "{{ ll_block_devices|default([]) + [ item ] }}"
+    ll_block_devices: "{{ ll_block_devices|default([]) + [item] }}"
   loop: "{{ ll_results.stdout_lines|default([]) }}"
 
 - name: "block_device_list: Debug ll_block_devices"
