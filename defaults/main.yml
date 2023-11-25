@@ -10,5 +10,12 @@
 ll_debug: false
 ll_backup_conf: false
 
+# install_package
+ll_ipkg_sanity: true
+ll_ipkg_sanity_quiet: true
+ll_ipkg_retries: 5
+ll_ipkg_delay: 2
+ll_ipkg_rescue_end_host: true
+
 # EOF
 ...
