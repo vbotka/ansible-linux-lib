@@ -1,13 +1,20 @@
 ---
+# All rights reserved (c) 2023, Vladimir Botka <vbotka@gmail.com>
+# Simplified BSD License, https://opensource.org/licenses/BSD-2-Clause
 
-# linux_lib: service-list
-# Create list of {services:status} hashes
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# linux_lib: service_list
+#
+# Description: Create list of block devices. Create list of {services:status} hashes
 # Input: none
 # Output: ll_services
 # Format: [{service:status}, ]
-# SEE ALSO: man service(8)
+# See: man service(8)
+#
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# https://github.com/vbotka/ansible-linux-lib/blob/master/tasks/service_list.yml
 
-- name: "service_list: Debug"
+- name: "ll service_list: Debug"
   vars:
     msg: |-
       ansible_architecture: {{ ansible_architecture }}
@@ -16,13 +23,14 @@
       ansible_distribution_major_version: {{ ansible_distribution_major_version }}
       ansible_distribution_version: {{ ansible_distribution_version }}
       ansible_distribution_release: {{ ansible_distribution_release }}
+      ansible_python_version: {{ ansible_python_version|d('UNDEFINED') }}
 
       ll_service_list_command: {{ ll_service_list_command }}
   ansible.builtin.debug:
     msg: "{{ '{}'.format(msg) }}"
   when: ll_debug|bool
 
-- name: "service_list: Run command {{ ll_service_list_command }}"
+- name: "ll service_list: Run command {{ ll_service_list_command }}"
   ansible.builtin.command:
     cmd: "{{ ll_service_list_command }}"
   args:
@@ -30,13 +38,13 @@
   changed_when: false  # E301: Commands should not change things if nothing needs doing
   register: ll_results
 
-- name: "service_list: Create ll_services"
+- name: "ll service_list: Create ll_services"
   ansible.builtin.set_fact:
     ll_services: "{{ ll_services|default([]) +
                      [{item.split().3: item.split().1}] }}"
   loop: "{{ ll_results.stdout_lines|default([]) }}"
 
-- name: "service_list: Debug ll_services"
+- name: "ll service_list: Debug ll_services"
   ansible.builtin.debug:
     var: ll_services
   when: ll_debug|bool

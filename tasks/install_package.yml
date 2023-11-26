@@ -49,7 +49,7 @@
 # See: vbotka.linux_postinstall defaults/main/packages.yml, common.yml
 #
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-# https://github.com/vbotka/linux-lib/blob/master/tasks/install_package.yml
+# https://github.com/vbotka/ansible-linux-lib/blob/master/tasks/install_package.yml
 
 - name: "ll install_package: Sanity ll_ipkg_list is defined."
   ansible.builtin.assert:
