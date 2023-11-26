@@ -14,6 +14,7 @@ Updates and fixes. Add changelog.
 
 Minor changes
 -------------
+* Update comments and task names.
 * Update README
 * Fix comment in install_package.yml
 * Add changelog

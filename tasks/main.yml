@@ -13,5 +13,8 @@
 - name: Import service_list.yml
   ansible.builtin.import_tasks: service_list.yml
 
+- name: Import install_package.yml
+  ansible.builtin.import_tasks: install_package.yml
+
 # EOF
 ...
