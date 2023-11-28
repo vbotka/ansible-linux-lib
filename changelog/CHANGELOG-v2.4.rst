@@ -5,6 +5,18 @@ vbotka.linux_lib 2.4 Release Notes
 .. contents:: Topics
 
 
+2.4.3
+=====
+
+Release Summary
+---------------
+Updates and fixes.
+
+Minor changes
+-------------
+* Fix assert parameter quiet in install_package.yml
+
+
 2.4.2
 =====
 

@@ -56,7 +56,7 @@
     that: ll_ipkg_list is defined
     fail_msg: "[ERR] Mandatory variable ll_ipkg_list not defined."
     success_msg: "[OK]  Mandatory variable ll_ipkg_list is defined."
-    quiet: ll_ipkg_sanity_quiet|d(true)|bool
+    quiet: "{{ ll_ipkg_sanity_quiet|bool }}"
   when: ll_ipkg_sanity|d(true)|bool
 
 - name: "ll install_package: Debug"
