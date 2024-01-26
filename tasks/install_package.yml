@@ -97,6 +97,11 @@
       delay: "{{ ll_ipkg_delay }}"
       when: ansible_os_family|d('UNDEFINED') == 'Debian'
 
+    - name: "ll install_package: Debug result"
+      ansible.builtin.debug:
+        var: result
+      when: ll_debug|bool
+
     - name: "ll install_package: Install (yum)"
       ansible.builtin.yum:
         name: "{{ ll_ipkg_list }}"
@@ -107,6 +112,11 @@
       retries: "{{ ll_ipkg_retries }}"
       delay: "{{ ll_ipkg_delay }}"
       when: ansible_os_family|d('UNDEFINED') == 'RedHat'
+
+    - name: "ll install_package: Debug result"
+      ansible.builtin.debug:
+        var: result
+      when: ll_debug|bool
 
     - name: "ll install_package: Install (package)"
       ansible.builtin.package:
