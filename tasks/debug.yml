@@ -1,7 +1,7 @@
 ---
 # Hint: Get readable output with stdout_callback = yaml
 
-- name: "Debug"
+- name: Debug
   vars:
     msg: |-
       ansible_architecture: {{ ansible_architecture }}
@@ -14,4 +14,3 @@
     msg: "{{ '{}'.format(msg) }}"
 
 # EOF
-...

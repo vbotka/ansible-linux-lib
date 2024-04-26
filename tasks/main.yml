@@ -17,4 +17,3 @@
   ansible.builtin.import_tasks: install_package.yml
 
 # EOF
-...

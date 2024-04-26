@@ -51,28 +51,28 @@
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # https://github.com/vbotka/ansible-linux-lib/blob/master/tasks/install_package.yml
 
-- name: "ll install_package: Sanity ll_ipkg_list is defined."
+- name: "Ll install_package: Sanity ll_ipkg_list is defined."
   ansible.builtin.assert:
     that: ll_ipkg_list is defined
     fail_msg: "[ERR] Mandatory variable ll_ipkg_list not defined."
     success_msg: "[OK]  Mandatory variable ll_ipkg_list is defined."
-    quiet: "{{ ll_ipkg_sanity_quiet|bool }}"
+    quiet: "{{ ll_ipkg_sanity_quiet | bool }}"
   when: ll_ipkg_sanity|d(true)|bool
 
-- name: "ll install_package: Debug"
+- name: "Ll install_package: Debug"
   vars:
     msg: |-
-      ansible_architecture: {{ ansible_architecture|d('UNDEFINED') }}
-      ansible_os_family: {{ ansible_os_family|d('UNDEFINED') }}
-      ansible_distribution: {{ ansible_distribution|d('UNDEFINED') }}
-      ansible_distribution_major_version: {{ ansible_distribution_major_version|d('UNDEFINED') }}
-      ansible_distribution_version: {{ ansible_distribution_version|d('UNDEFINED') }}
-      ansible_distribution_release: {{ ansible_distribution_release|d('UNDEFINED') }}
-      ansible_python_version: {{ ansible_python_version|d('UNDEFINED') }}
+      ansible_architecture: {{ ansible_architecture | d('UNDEFINED') }}
+      ansible_os_family: {{ ansible_os_family | d('UNDEFINED') }}
+      ansible_distribution: {{ ansible_distribution | d('UNDEFINED') }}
+      ansible_distribution_major_version: {{ ansible_distribution_major_version | d('UNDEFINED') }}
+      ansible_distribution_version: {{ ansible_distribution_version | d('UNDEFINED') }}
+      ansible_distribution_release: {{ ansible_distribution_release | d('UNDEFINED') }}
+      ansible_python_version: {{ ansible_python_version | d('UNDEFINED') }}
 
       ll_ipkg_list: {{ ll_ipkg_list }}
-      ll_ipkg_state: {{ ll_ipkg_state|d('UNDEFINED') }}
-      ll_ipkg_autoremove: {{ ll_ipkg_autoremove|d('UNDEFINED') }}
+      ll_ipkg_state: {{ ll_ipkg_state | d('UNDEFINED') }}
+      ll_ipkg_autoremove: {{ ll_ipkg_autoremove | d('UNDEFINED') }}
       ll_ipkg_sanity: {{ ll_ipkg_sanity }}
       ll_ipkg_sanity_quiet: {{ ll_ipkg_sanity_quiet }}
       ll_ipkg_retries: {{ ll_ipkg_retries }}
@@ -85,47 +85,46 @@
 
 - name: Install package
   block:
-
-    - name: "ll install_package: Install (apt)"
+    - name: "Ll install_package: Install (apt)"
       ansible.builtin.apt:
         name: "{{ ll_ipkg_list }}"
-        state: "{{ ll_ipkg_state|d(omit) }}"
-        autoremove: "{{ ll_ipkg_autoremove|d(omit) }}"
+        state: "{{ ll_ipkg_state | d(omit) }}"
+        autoremove: "{{ ll_ipkg_autoremove | d(omit) }}"
       register: result
       until: result is succeeded
       retries: "{{ ll_ipkg_retries }}"
       delay: "{{ ll_ipkg_delay }}"
       when: ansible_os_family|d('UNDEFINED') == 'Debian'
 
-    - name: "ll install_package: Debug result (apt)"
+    - name: "Ll install_package: Debug result (apt)"
       ansible.builtin.debug:
         var: result
       when:
         - ll_debug|bool
         - ansible_os_family|d('UNDEFINED') == 'Debian'
 
-    - name: "ll install_package: Install (yum)"
+    - name: "Ll install_package: Install (yum)"
       ansible.builtin.yum:
         name: "{{ ll_ipkg_list }}"
-        state: "{{ lp_install_package_state|d(omit) }}"
-        autoremove: "{{ ll_ipkg_autoremove|d(omit) }}"
+        state: "{{ lp_install_package_state | d(omit) }}"
+        autoremove: "{{ ll_ipkg_autoremove | d(omit) }}"
       register: result
       until: result is succeeded
       retries: "{{ ll_ipkg_retries }}"
       delay: "{{ ll_ipkg_delay }}"
       when: ansible_os_family|d('UNDEFINED') == 'RedHat'
 
-    - name: "ll install_package: Debug result (yum)"
+    - name: "Ll install_package: Debug result (yum)"
       ansible.builtin.debug:
         var: result
       when:
         - ll_debug|bool
         - ansible_os_family|d('UNDEFINED') == 'RedHat'
 
-    - name: "ll install_package: Install (package)"
+    - name: "Ll install_package: Install (package)"
       ansible.builtin.package:
         name: "{{ item }}"
-        state: "{{ lp_install_package_state|d(omit) }}"
+        state: "{{ lp_install_package_state | d(omit) }}"
       loop: "{{ ll_ipkg_list }}"
       register: result
       until: result is succeeded
@@ -133,7 +132,7 @@
       delay: "{{ ll_ipkg_delay }}"
       when: ansible_os_family|d('UNDEFINED') not in ['Debian', 'RedHat']
 
-    - name: "ll install_package: Debug result (package)"
+    - name: "Ll install_package: Debug result (package)"
       ansible.builtin.debug:
         var: result
       when:
@@ -141,19 +140,17 @@
         - ansible_os_family|d('UNDEFINED') not in ['Debian', 'RedHat']
 
   rescue:
-
-    - name: "ll install_package: Rescue debug"
+    - name: "Ll install_package: Rescue debug"
       ansible.builtin.debug:
         msg: |
           [ERR] task {{ ansible_failed_task.name }} failed. End host.
           ansible_failed_task:
-            {{ ansible_failed_task|to_yaml(indent=2)|indent(2) }}
+            {{ ansible_failed_task | to_yaml(indent=2) | indent(2) }}
           ansible_failed_result:
-            {{ ansible_failed_result|to_yaml(indent=2)|indent(2) }}
+            {{ ansible_failed_result | to_yaml(indent=2) | indent(2) }}
 
-    - name: "ll install_package: Rescue end host"
+    - name: "Ll install_package: Rescue end host"
       ansible.builtin.meta: end_host
       when: ll_ipkg_rescue_end_host|bool
 
 # EOF
-...

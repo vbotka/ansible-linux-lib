@@ -14,7 +14,7 @@
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # https://github.com/vbotka/ansible-linux-lib/blob/master/tasks/block_device_list.yml
 
-- name: "ll block_device_list: Debug"
+- name: "Ll block_device_list: Debug"
   vars:
     msg: |
       ansible_architecture: {{ ansible_architecture }}
@@ -23,28 +23,27 @@
       ansible_distribution_major_version: {{ ansible_distribution_major_version }}
       ansible_distribution_version: {{ ansible_distribution_version }}
       ansible_distribution_release: {{ ansible_distribution_release }}
-      ansible_python_version: {{ ansible_python_version|d('UNDEFINED') }}
+      ansible_python_version: {{ ansible_python_version | d('UNDEFINED') }}
 
       ll_block_device_list_command: {{ ll_block_device_list_command }}
   ansible.builtin.debug:
     msg: "{{ '{}'.format(msg) }}"
   when: ll_debug|bool
 
-- name: "ll block_device_list: Run command {{ ll_block_device_list_command }}"
+- name: "Ll block_device_list: Run command {{ ll_block_device_list_command }}"
   ansible.builtin.command:
     cmd: "{{ ll_block_device_list_command }}"
   changed_when: false
   register: ll_results
 
-- name: "ll block_device_list: Create list of block devices"
+- name: "Ll block_device_list: Create list of block devices"
   ansible.builtin.set_fact:
-    ll_block_devices: "{{ ll_block_devices|default([]) + [item] }}"
+    ll_block_devices: "{{ ll_block_devices | default([]) + [item] }}"
   loop: "{{ ll_results.stdout_lines|default([]) }}"
 
-- name: "ll block_device_list: Debug ll_block_devices"
+- name: "Ll block_device_list: Debug ll_block_devices"
   ansible.builtin.debug:
     var: ll_block_devices
   when: ll_debug|bool
 
 # EOF
-...
