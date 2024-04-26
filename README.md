@@ -1,6 +1,6 @@
 # linux_lib
 
-![quality](https://img.shields.io/ansible/quality/27910)](https://galaxy.ansible.com/vbotka/linux_lib)[![Build Status](https://app.travis-ci.com/vbotka/ansible-linux-lib.svg?branch=master)](https://app.travis-ci.com/vbotka/ansible-linux-lib)[![GitHub tag](https://img.shields.io/github/v/tag/vbotka/ansible-linux-lib)](https://github.com/vbotka/ansible-linux-lib/tags)
+[![quality](https://img.shields.io/ansible/quality/27910)](https://galaxy.ansible.com/vbotka/linux_lib)[![Build Status](https://app.travis-ci.com/vbotka/ansible-linux-lib.svg?branch=master)](https://app.travis-ci.com/vbotka/ansible-linux-lib)[![GitHub tag](https://img.shields.io/github/v/tag/vbotka/ansible-linux-lib)](https://github.com/vbotka/ansible-linux-lib/tags)
 
 [Ansible role.](https://galaxy.ansible.com/vbotka/linux_lib/) Ansible Linux library of tasks.
 
