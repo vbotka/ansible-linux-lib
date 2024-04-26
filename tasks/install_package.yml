@@ -1,5 +1,5 @@
 ---
-# All rights reserved (c) 2023, Vladimir Botka <vbotka@gmail.com>
+# All rights reserved (c) 2023-2024, Vladimir Botka <vbotka@gmail.com>
 # Simplified BSD License, https://opensource.org/licenses/BSD-2-Clause
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -43,8 +43,8 @@
 #       vars:
 #         ll_ipkg_list: "{{ list_of_packages }}"
 #         ll_ipkg_state: "{{ lp_package_state }}"
-#         ll_ipkg_autoremove: "{{ lp_packages_autoremove|bool }}"
-#         ll_debug: "{{ lp_packages_debug|bool }}"
+#         ll_ipkg_autoremove: "{{ lp_packages_autoremove | bool }}"
+#         ll_debug: "{{ lp_packages_debug | bool }}"
 #
 # See: vbotka.linux_postinstall defaults/main/packages.yml, common.yml
 #
@@ -57,7 +57,7 @@
     fail_msg: "[ERR] Mandatory variable ll_ipkg_list not defined."
     success_msg: "[OK]  Mandatory variable ll_ipkg_list is defined."
     quiet: "{{ ll_ipkg_sanity_quiet | bool }}"
-  when: ll_ipkg_sanity|d(true)|bool
+  when: ll_ipkg_sanity | d(true) | bool
 
 - name: "Ll install_package: Debug"
   vars:
@@ -81,7 +81,7 @@
 
   ansible.builtin.debug:
     msg: "{{ '{}'.format(msg) }}"
-  when: ll_debug|bool
+  when: ll_debug | bool
 
 - name: Install package
   block:
@@ -94,14 +94,14 @@
       until: result is succeeded
       retries: "{{ ll_ipkg_retries }}"
       delay: "{{ ll_ipkg_delay }}"
-      when: ansible_os_family|d('UNDEFINED') == 'Debian'
+      when: ansible_os_family | d('UNDEFINED') == 'Debian'
 
     - name: "Ll install_package: Debug result (apt)"
       ansible.builtin.debug:
         var: result
       when:
-        - ll_debug|bool
-        - ansible_os_family|d('UNDEFINED') == 'Debian'
+        - ll_debug | bool
+        - ansible_os_family | d('UNDEFINED') == 'Debian'
 
     - name: "Ll install_package: Install (yum)"
       ansible.builtin.yum:
@@ -112,14 +112,14 @@
       until: result is succeeded
       retries: "{{ ll_ipkg_retries }}"
       delay: "{{ ll_ipkg_delay }}"
-      when: ansible_os_family|d('UNDEFINED') == 'RedHat'
+      when: ansible_os_family | d('UNDEFINED') == 'RedHat'
 
     - name: "Ll install_package: Debug result (yum)"
       ansible.builtin.debug:
         var: result
       when:
         - ll_debug|bool
-        - ansible_os_family|d('UNDEFINED') == 'RedHat'
+        - ansible_os_family | d('UNDEFINED') == 'RedHat'
 
     - name: "Ll install_package: Install (package)"
       ansible.builtin.package:
@@ -130,14 +130,14 @@
       until: result is succeeded
       retries: "{{ ll_ipkg_retries }}"
       delay: "{{ ll_ipkg_delay }}"
-      when: ansible_os_family|d('UNDEFINED') not in ['Debian', 'RedHat']
+      when: ansible_os_family | d('UNDEFINED') not in ['Debian', 'RedHat']
 
     - name: "Ll install_package: Debug result (package)"
       ansible.builtin.debug:
         var: result
       when:
-        - ll_debug|bool
-        - ansible_os_family|d('UNDEFINED') not in ['Debian', 'RedHat']
+        - ll_debug | bool
+        - ansible_os_family | d('UNDEFINED') not in ['Debian', 'RedHat']
 
   rescue:
     - name: "Ll install_package: Rescue debug"
@@ -151,6 +151,6 @@
 
     - name: "Ll install_package: Rescue end host"
       ansible.builtin.meta: end_host
-      when: ll_ipkg_rescue_end_host|bool
+      when: ll_ipkg_rescue_end_host | bool
 
 # EOF

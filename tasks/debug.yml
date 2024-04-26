@@ -1,5 +1,5 @@
 ---
-# Hint: Get readable output with stdout_callback = yaml
+# Hint: Get readable output with stdout_callback=yaml
 
 - name: Debug
   vars:
