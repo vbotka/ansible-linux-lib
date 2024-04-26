@@ -12,10 +12,10 @@ Feel free to [share your feedback and report issues](https://github.com/vbotka/a
 ## Description
 
 Do not run this role. It's a collection of independent tasks. The
-purpose of this role is to provide a library of reusable tasks to be
-included in playbooks and other roles.
+purpose of this role is to provide a library of reusable
+tasks. Include them in playbooks and other roles.
 
-Tested with Ubuntu 20.04 and 22.04. Some tasks tested with CentOS 7.
+Tested with [Ubuntu Supported Releases](http://releases.ubuntu.com/).
 
 
 ## Requirements
@@ -31,7 +31,7 @@ None.
 
 ## Variables
 
-See defaults, vars and source of the tasks.
+See defaults, vars, and source of the tasks.
 
 
 ## Workflow
@@ -43,10 +43,10 @@ shell> ansible-galaxy role install vbotka.linux_lib
 ```
 
 2) Include or import a task from *vbotka.linux_lib* in a playbook, or
-   in any other role
+   in any other role. For example,
 
 
-```
+```bash
 shell> cat test-linux-lib.yml
 - hosts: host1
   tasks:
@@ -59,9 +59,11 @@ shell> cat test-linux-lib.yml
 
 3) Run the playbook
 
-```
+```bash
 shell> ansible-playbook test-linux-lib.yml
 ```
+
+
 
 ## License
 
