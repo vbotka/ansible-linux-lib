@@ -1,6 +1,6 @@
 # linux_lib
 
-[![quality](https://img.shields.io/ansible/quality/27910)](https://galaxy.ansible.com/vbotka/linux_lib)[![Build Status](https://app.travis-ci.com/vbotka/ansible-linux-lib.svg?branch=master)](https://app.travis-ci.com/vbotka/ansible-linux-lib)
+![quality](https://img.shields.io/ansible/quality/27910)](https://galaxy.ansible.com/vbotka/linux_lib)[![Build Status](https://app.travis-ci.com/vbotka/ansible-linux-lib.svg?branch=master)](https://app.travis-ci.com/vbotka/ansible-linux-lib)[![GitHub tag](https://img.shields.io/github/v/tag/vbotka/ansible-linux-lib)](https://github.com/vbotka/ansible-linux-lib/tags)
 
 [Ansible role.](https://galaxy.ansible.com/vbotka/linux_lib/) Ansible Linux library of tasks.
 
@@ -12,10 +12,10 @@ Feel free to [share your feedback and report issues](https://github.com/vbotka/a
 ## Description
 
 Do not run this role. It's a collection of independent tasks. The
-purpose of this role is to provide a library of reusable tasks to be
-included in playbooks and other roles.
+purpose of this role is to provide a library of reusable
+tasks. Include them in playbooks and other roles.
 
-Tested with Ubuntu 20.04 and 22.04. Some tasks tested with CentOS 7.
+Tested with [Ubuntu Supported Releases](http://releases.ubuntu.com/).
 
 
 ## Requirements
@@ -31,7 +31,7 @@ None.
 
 ## Variables
 
-See defaults, vars and source of the tasks.
+See defaults, vars, and source of the tasks.
 
 
 ## Workflow
@@ -43,10 +43,10 @@ shell> ansible-galaxy role install vbotka.linux_lib
 ```
 
 2) Include or import a task from *vbotka.linux_lib* in a playbook, or
-   in any other role
+   in any other role. For example,
 
 
-```
+```bash
 shell> cat test-linux-lib.yml
 - hosts: host1
   tasks:
@@ -59,9 +59,20 @@ shell> cat test-linux-lib.yml
 
 3) Run the playbook
 
-```
+```bash
 shell> ansible-playbook test-linux-lib.yml
 ```
+
+## Ansible lint
+
+Use the configuration file *.ansible-lint.local* when running
+*ansible-lint*. Some rules might be disabled and some warnings might
+be ignored. See the notes in the configuration file.
+
+```bash
+shell> ansible-lint -c .ansible-lint.local
+```
+
 
 ## License
 
