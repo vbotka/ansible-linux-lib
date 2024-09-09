@@ -15,6 +15,7 @@ Ansible 2.17 update.
 Major Changes
 -------------
 * Supported Ubuntu focal, jammy, lunar, mantic, and nobel
+* Use module dnf instead of yum.
 
 Minor Changes
 -------------
