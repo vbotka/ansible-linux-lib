@@ -4,6 +4,7 @@
 - name: Debug
   vars:
     msg: |-
+      ll_role_version: {{ ll_role_version }}
       ansible_architecture: {{ ansible_architecture }}
       ansible_os_family: {{ ansible_os_family }}
       ansible_distribution: {{ ansible_distribution }}

@@ -1,5 +1,6 @@
 ---
 # linux_lib defaults
+ll_role_version: 2.6.2
 
 # Best practice is to include vars_from ansible_os_family
 # - include_role:
