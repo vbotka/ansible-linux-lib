@@ -5,24 +5,22 @@ vbotka.linux_lib 2.6 Release Notes
 .. contents:: Topics
 
 
-2.6.0
+2.6.2
 =====
 
 Release Summary
 ---------------
-Ansible 2.16 update
+Ansible 2.17 update.
 
 Major Changes
 -------------
-* Supported Ubuntu focal, jammy, lunar, and mantic
+* Supported Ubuntu focal, jammy, lunar, mantic, and nobel
+* Use module dnf instead of yum.
 
 Minor Changes
 -------------
-* Update README.
-* Update Ansible lint config.
-* Update meta and travis config.
-* Update default GitHub link to the binary.
-* Fix Ansible lint.
+* Add var ll_role_version.
+* Update debug.yml
 
 Bugfixes
 --------

@@ -7,14 +7,14 @@
 #
 # Description:
 #
-#   Depending on the OS, use Ansible module package, yum, or apt to
-#   install a list of packages.
+#   Depending on the OS, use Ansible module package, dnf, or apt to
+#   manage a list of packages.
 #
 # Input:
 #
 #   ll_ipkg_list .................. list of packages (mandatory)
-#   ll_ipkg_state ................. apt/yum/package state (default=omit)
-#   ll_ipkg_autoremove ............ apt/yum autoremove (default=omit)
+#   ll_ipkg_state ................. apt/dnf/package state (default=omit)
+#   ll_ipkg_autoremove ............ apt/dnf autoremove (default=omit)
 #   ll_ipkg_sanity ................ enable sanity check (default=true)
 #   ll_ipkg_sanity_quiet .......... quiet sanity check (default=true)
 #   ll_ipkg_retries ............... number of retries before giving up in a until loop (default=5)
@@ -78,13 +78,13 @@
       ll_ipkg_retries: {{ ll_ipkg_retries }}
       ll_ipkg_delay: {{ ll_ipkg_delay }}
       ll_ipkg_rescue_end_host: {{ ll_ipkg_rescue_end_host }}
-
   ansible.builtin.debug:
     msg: "{{ '{}'.format(msg) }}"
   when: ll_debug | bool
 
-- name: Install package
+- name: Manage a list of packages
   block:
+
     - name: "Ll install_package: Install (apt)"
       ansible.builtin.apt:
         name: "{{ ll_ipkg_list }}"
@@ -103,8 +103,8 @@
         - ll_debug | bool
         - ansible_os_family | d('UNDEFINED') == 'Debian'
 
-    - name: "Ll install_package: Install (yum)"
-      ansible.builtin.yum:
+    - name: "Ll install_package: Install (dnf)"
+      ansible.builtin.dnf:
         name: "{{ ll_ipkg_list }}"
         state: "{{ lp_install_package_state | d(omit) }}"
         autoremove: "{{ ll_ipkg_autoremove | d(omit) }}"
@@ -114,7 +114,7 @@
       delay: "{{ ll_ipkg_delay }}"
       when: ansible_os_family | d('UNDEFINED') == 'RedHat'
 
-    - name: "Ll install_package: Debug result (yum)"
+    - name: "Ll install_package: Debug result (dnf)"
       ansible.builtin.debug:
         var: result
       when:
@@ -140,6 +140,7 @@
         - ansible_os_family | d('UNDEFINED') not in ['Debian', 'RedHat']
 
   rescue:
+
     - name: "Ll install_package: Rescue debug"
       ansible.builtin.debug:
         msg: |
