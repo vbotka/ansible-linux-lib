@@ -3,6 +3,23 @@ vbotka.linux_lib 2.6 Release Notes
 ==================================
 
 .. contents:: Topics
+# BEGIN Commits 2.6.3
+- ''
+# END Commits 2.6.3
+# BEGIN Release notes 2.6.3
+2.6.3
+=====
+Release Summary
+---------------
+Major Changes
+-------------
+Minor Changes
+-------------
+Bugfixes
+--------
+Breaking Changes / Porting Guide
+--------------------------------
+# END Release notes 2.6.3
 
 
 2.6.2
